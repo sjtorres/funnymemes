@@ -5,6 +5,7 @@ import logo from '../../images/logo.png'
 
 export default function Home() {
   const [templates, setTemplates] = useState([])
+  const [selectedTemplate, setSelectedTemplate] = useState(null)
 
   useEffect(() => {
     (async () => {
@@ -23,23 +24,32 @@ export default function Home() {
         <Templates>
           {templates.map((template) => (
             <button 
-            key={template.id}
+              key={template.id}
               type="button"
+              onClick={() => setSelectedTemplate(template)}
+              className={template.id === selectedTemplate?.id ? 'selected' : ''}
             >
               <img src={template.url} alt={template.name}/>
             </button>
           ))}
         </Templates>
 
-        <h2>Textos</h2>
+        {selectedTemplate && (
+          <>
+            <h2>Textos</h2>
 
-        <Form>
-          <input placeholder="Texto #1" />
-          <input placeholder="Texto #1" />
-          <input placeholder="Texto #1" />
-
-          <Button type="submit" >FunnyMemes</Button>
-        </Form>
+            <Form>
+              {(new Array(selectedTemplate.box_count)).fill('').map((_, index) => (
+                <input
+                  key={String(Math.random())}
+                  placeholder={`Text #${index + 1}`}
+                />
+              ))}
+    
+              <Button type="submit" >FunnyMemes</Button>
+            </Form>
+          </>
+        )}
       </Card>
 
     </Wrapper>
