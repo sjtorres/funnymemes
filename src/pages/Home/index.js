@@ -35,8 +35,8 @@ export default function Home() {
 
     const params = qs.stringify({
       template_id: selectedTemplate.id,
-      username: 'sjtorres',
-      password: 'Ispgir23567',
+      username: 'usuario',
+      password: 'senha',
       boxes: boxes.map(text => ({ text }))
     })
 
