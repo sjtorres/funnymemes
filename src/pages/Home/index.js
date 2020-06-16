@@ -46,6 +46,12 @@ export default function Home() {
     setGeneratedMeme(url)
   }
 
+  function handleReset() {
+    setSelectedTemplate(null)
+    setBoxes([])
+    setGeneratedMeme(null)
+  }
+
   return (
     <Wrapper>
       <img src={logo} alt="FunnyMemes" />
@@ -54,7 +60,7 @@ export default function Home() {
         {generatedMeme && (
           <>
             <img src={generatedMeme} alt="Generated Meme" />
-            <Button type="submit" >FunnyMemes</Button>
+            <Button type="button" onClick={handleReset}>Criar Novo Meme</Button>
           </>
         )}
         {!generatedMeme && (
